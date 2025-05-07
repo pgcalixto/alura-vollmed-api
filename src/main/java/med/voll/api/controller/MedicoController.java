@@ -87,6 +87,16 @@ public class MedicoController {
         return ResponseEntity.ok(medicoDto);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<MedicoDto> detalhar(@PathVariable Long id) {
+
+        final var medico = repository.getReferenceById(id);
+
+        final var medicoDto = medicoEntityMapper.toMedicoDto(medico);
+
+        return ResponseEntity.ok(medicoDto);
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
