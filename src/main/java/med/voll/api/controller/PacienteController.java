@@ -64,6 +64,17 @@ public class PacienteController {
         paciente.atualizarInformacoes(dados);
     }
 
+    @GetMapping("/{id}")
+    @Transactional
+    public ResponseEntity<PacienteDto> detalhar(@PathVariable Long id) {
+
+        final var paciente = pacienteRepository.getReferenceById(id);
+
+        final var pacienteDto = pacienteEntityMapper.toPacienteDto(paciente);
+
+        return ResponseEntity.ok(pacienteDto);
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id) {
