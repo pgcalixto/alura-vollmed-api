@@ -101,9 +101,9 @@ public class MedicoController {
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
 
-        final var medico = repository.getReferenceById(id);
+        final var medicoEntity = repository.getReferenceById(id);
 
-        medico.excluir();
+        medicoEntity.excluir();
 
         return ResponseEntity.noContent().build();
     }
